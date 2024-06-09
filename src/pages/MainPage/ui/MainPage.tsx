@@ -6,7 +6,6 @@ const MainPage = () => {
 
     return (
         <div>
-            {t('да')}
             {t("Главная страница")}
             </div>
     );
