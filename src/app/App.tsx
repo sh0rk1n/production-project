@@ -7,12 +7,10 @@ import { Sidebar } from 'widgets/Sidebar';
 import { Modal } from 'shared/ui/Modal/Modal';
 
 const App = () => {
-    const { theme } = useTheme();
-
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className={classNames('app', {}, [theme])}>
+        <div className={classNames('app', {}, [])}>
             <Suspense fallback="">
                 <NavBar />
                 <div className="content-page">
