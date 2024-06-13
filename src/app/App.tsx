@@ -5,9 +5,15 @@ import { AppRouter } from 'app/providers/router';
 import { NavBar } from 'widgets/NavBar';
 import { Sidebar } from 'widgets/Sidebar';
 import { Modal } from 'shared/ui/Modal/Modal';
+import { useDispatch } from 'react-redux';
+import { userActions } from 'entities/User';
 
 const App = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(userActions.initAuthData);
+    }, [dispatch]);
 
     return (
         <div className={classNames('app', {}, [])}>
