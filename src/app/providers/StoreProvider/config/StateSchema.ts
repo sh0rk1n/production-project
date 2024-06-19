@@ -7,6 +7,7 @@ import {
 import { CombinedState } from 'redux';
 import { ProfileSchema } from 'entities/Profile';
 import { AxiosInstance } from 'axios';
+import { ArticleDetailsSchema } from 'entities/Article';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -15,6 +16,7 @@ export interface StateSchema {
     // async reducer
     loginForm?: LoginSchema
     profile?:ProfileSchema
+    articleDetails?:ArticleDetailsSchema
 }
 
 export type StateSchemaKey = keyof StateSchema
