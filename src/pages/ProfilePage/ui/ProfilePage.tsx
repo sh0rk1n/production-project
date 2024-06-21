@@ -9,7 +9,8 @@ import {
     getProfileValidateErrors,
     profileActions,
     ProfileCard,
-    profileReducer, ValidateProfileError,
+    profileReducer,
+    ValidateProfileError,
 } from 'entities/Profile';
 import { useCallback, useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -17,8 +18,8 @@ import { useSelector } from 'react-redux';
 import { Currency } from 'entities/Currency';
 import { Country } from 'entities/Country';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { validateProfileData } from 'entities/Profile/model/services/validateProfileData/validateProfileData';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 
 const reducers: ReducersList = {
@@ -37,6 +38,7 @@ const ProfilePage = ({ className }:ProfilePageProps) => {
     const readonly = useSelector(getProfileReadonly);
     const error = useSelector(getProfileError);
     const validateErrors = useSelector(getProfileValidateErrors);
+    const { id } = useParams<{id: string}>();
 
     const validateErrorTranslate = {
         [ValidateProfileError.SERVER_ERROR]: t('Серверная ошибка при сохранении'),
@@ -47,7 +49,9 @@ const ProfilePage = ({ className }:ProfilePageProps) => {
     };
 
     useEffect(() => {
-        dispatch(fetchProfileData());
+        if (id) {
+            dispatch(fetchProfileData(id));
+        }
     }, [dispatch]);
 
     const onChangeFirstname = useCallback((value?: string) => {
