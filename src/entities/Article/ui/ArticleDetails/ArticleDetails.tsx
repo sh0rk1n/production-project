@@ -13,7 +13,7 @@ import { Icon } from 'shared/ui/Icon/Icon';
 import { ArticleCodeBlockComponent } from 'entities/Article/ui/ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 import { ArticleImageBlockComponent } from 'entities/Article/ui/ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextBlockComponent } from 'entities/Article/ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
-import { ArticalBlockType, ArticleBlock } from '../../model/types/article';
+import { ArticleBlockType, ArticleBlock } from '../../model/types/article';
 import {
     getArticleDetailsData,
     getArticleDetailsError,
@@ -42,11 +42,11 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 
     const renderBlock = useCallback((block: ArticleBlock) => {
         switch (block.type) {
-        case ArticalBlockType.CODE:
+        case ArticleBlockType.CODE:
             return <ArticleCodeBlockComponent key={block.id} className={cls.block} block={block} />;
-        case ArticalBlockType.IMAGE:
+        case ArticleBlockType.IMAGE:
             return <ArticleImageBlockComponent key={block.id} className={cls.block} block={block} />;
-        case ArticalBlockType.TEXT:
+        case ArticleBlockType.TEXT:
             return <ArticleTextBlockComponent key={block.id} className={cls.block} block={block} />;
         default:
             return null;
