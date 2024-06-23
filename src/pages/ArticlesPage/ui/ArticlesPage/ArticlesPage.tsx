@@ -6,11 +6,13 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { ArticleViewSelector } from 'features/ArticleViewSelector/ArticleViewSelector';
 import { Page } from 'shared/ui/Page/Page';
-import { fetchNextArticlesPage } from 'pages/ArticlesPage/model/services/fetchNextArticlesPage/fetchNextArticlesPage';
-import { fetchArticleList } from '../../model/services/fetchArticleList/fetchArticleList';
+import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 import {
-    getArticlesPageError, getArticlesPageHasMore,
-    getArticlesPageIsLoading, getArticlesPageNum,
+    getArticlesPageError,
+    getArticlesPageHasMore,
+    getArticlesPageIsLoading,
+    getArticlesPageNum,
     getArticlesPageView,
 } from '../../model/selectors/articlePageSelectors';
 import { articlesPageActions, articlesPageReducer, getArticles } from '../../model/slices/articlesPageSlice';
@@ -43,14 +45,11 @@ const ArticlesPage = (props: ArticlesPageProps) => {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(articlesPageActions.initState());
-        dispatch(fetchArticleList({
-            page: 1,
-        }));
+        dispatch(initArticlesPage());
     }, [dispatch]);
 
     return (
-        <DynamicModuleLoader reducers={reducers}>
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             <Page
                 onScrollEnd={onLoadNextPart}
                 className={classNames(cls.ArticlesPage, {}, [className])}
