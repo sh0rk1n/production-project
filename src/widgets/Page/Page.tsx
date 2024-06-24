@@ -6,8 +6,6 @@ import { useInfiniteScroll } from 'shared/lib/hooks/useInfiniteScroll/useInfinit
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getScrollByPath, scrollSaveActions } from 'widgets/Page/ScrollSave';
 import { useLocation } from 'react-router-dom';
-import { Wrapper } from '@storybook/blocks';
-import { use } from 'i18next';
 import { useSelector } from 'react-redux';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { useThrottle } from 'shared/lib/hooks/useThrottle/useThrottle';
@@ -37,10 +35,9 @@ export const Page = memo((props: PageProps) => {
 
     useEffect(() => {
         wrapperRef.current.scrollTop = scrollPosition;
-    }, []);
+    }, [scrollPosition]);
 
     const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
-        console.log('scroll');
         dispatch(scrollSaveActions.setScrollPosition({
             position: e.currentTarget.scrollTop,
             path: pathname,
@@ -54,7 +51,7 @@ export const Page = memo((props: PageProps) => {
             onScroll={onScroll}
         >
             {children}
-            <div ref={triggerRef} />
+            {onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null}
         </section>
     );
 });
