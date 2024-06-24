@@ -8,10 +8,13 @@ import { CombinedState } from 'redux';
 import { ProfileSchema } from 'entities/Profile';
 import { AxiosInstance } from 'axios';
 import { ArticleDetailsSchema } from 'entities/Article';
-import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
+import { ArticleDetailsCommentsSchema, ArticleDetailsPageSchema } from 'pages/ArticleDetailsPage';
 import { AddCommentFormSchema } from 'features/addCommentForm';
 import { ArticlePageSchema } from 'pages/ArticlesPage';
 import { ScrollSaveSchema } from 'widgets/Page/ScrollSave';
+import {
+    ArticleDetailsPageRecommendationsSchema,
+} from 'pages/ArticleDetailsPage/model/types/ArticleDetailsPageRecommendationsSchema';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -22,9 +25,9 @@ export interface StateSchema {
     loginForm?: LoginSchema
     profile?:ProfileSchema
     articleDetails?:ArticleDetailsSchema
-    articleDetailsComments?:ArticleDetailsCommentsSchema
     addCommentForm?:AddCommentFormSchema
     articlesPage?:ArticlePageSchema
+    articleDetailsPage?:ArticleDetailsPageSchema
 }
 
 export type StateSchemaKey = keyof StateSchema
