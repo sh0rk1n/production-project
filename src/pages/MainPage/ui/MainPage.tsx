@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BugButton } from 'app/providers/ErrorBoundary';
-import { Counter } from 'entities/Counter';
-import { Input } from 'shared/ui/Input/Input';
 import { Page } from 'widgets/Page/Page';
+import { HStack } from 'shared/ui/Stack';
+import { ListBox } from 'shared/ui/ListBox/ListBox';
 
 const MainPage = () => {
     const { t } = useTranslation();
@@ -16,6 +15,24 @@ const MainPage = () => {
     return (
         <Page>
             {t('Главная страница')}
+            <div>dsds</div>
+            <div>dsds</div>
+            <HStack>
+                <div>dsds</div>
+                <div>dsds</div>
+                <ListBox
+                    defaultValue="Выбери значение"
+                    onChange={(value:string) => {}}
+                    value={undefined}
+                    items={[
+                        { value: '1', content: '123' },
+                        { value: '3231', content: '23323123', disabled: true },
+                        { value: '1323', content: '1232323' },
+                    ]}
+                />
+            </HStack>
+            <div>dsds</div>
+            <div>dsds</div>
         </Page>
     );
 };
