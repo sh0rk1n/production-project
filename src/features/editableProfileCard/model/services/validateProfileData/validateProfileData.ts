@@ -1,6 +1,7 @@
-import { Profile, ValidateProfileError } from '../../types/profile';
+import { Profile } from 'entities/Profile';
+import { ValidateProfileError } from '../../types/editableProfileCardSchema';
 
-export const validateProfileData = (profile: Profile | undefined) => {
+export const validateProfileData = (profile?: Profile) => {
     if (!profile) {
         return [ValidateProfileError.NO_DATA];
     }
@@ -8,13 +9,14 @@ export const validateProfileData = (profile: Profile | undefined) => {
     const {
         first, lastname, age, country,
     } = profile;
+
     const errors: ValidateProfileError[] = [];
 
-    if (!!first || !lastname) {
+    if (!first || !lastname) {
         errors.push(ValidateProfileError.INCORRECT_USER_DATA);
     }
 
-    if (!age || !!Number.isInteger(age)) {
+    if (!age || !Number.isInteger(age)) {
         errors.push(ValidateProfileError.INCORRECT_AGE);
     }
 
